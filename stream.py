@@ -155,8 +155,6 @@ class Stream:
 
 
     def complete(self):
-        if self.actuator is not None:
-            self.actuator.stop()
         if self.sensor is not None:
             self.sensor.stop()
         self.outsignal.complete()

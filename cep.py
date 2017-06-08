@@ -11,7 +11,7 @@ import robots.mock
 
 parser = argparse.ArgumentParser(description="Load a CEP graph")
 parser.add_argument('program_id', metavar='id', type=int)
-parser.add_argument('--ip', metavar='ip', default="192.168.11.2")
+parser.add_argument('--ip', metavar='ip', default="192.168.11.5")
 parser.add_argument('--port', type=int, default=9559)
 parser.add_argument('--protocol', default="tcp")
 parser.add_argument('--robot', default="mock")

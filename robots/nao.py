@@ -41,9 +41,9 @@ class MemoryModule(Module):
 
     def publish(self):
         """ required doc """
-        self.unsubscribe_to_event()
+        #self.unsubscribe_to_event()
         self.concrete_publish() # should be implemented by children
-        self.subscribe_to_event()
+        #self.subscribe_to_event()
 
 
 
@@ -365,16 +365,12 @@ class LedBrightness(Actuator):
 
     def __call__(self, value):
         Actuator.__call__(self, value)
-        if value > 0.8:
-            self.module.setIntensity("RightFaceLedsRed", 1)
-            self.module.setIntensity("LeftFaceLedsRed", 1)
-            self.module.setIntensity("RightFaceLedsGreen", 0)
-            self.module.setIntensity("LeftFaceLedsGreen", 0)
-        else:
-            self.module.setIntensity("RightFaceLedsGreen", 1)
-            self.module.setIntensity("LeftFaceLedsGreen", 1)
-            self.module.setIntensity("RightFaceLedsRed", 0)
-            self.module.setIntensity("LeftFaceLedsRed", 0)
+        self.module.setIntensity("RightFaceLedsRed", value)
+        self.module.setIntensity("LeftFaceLedsRed", value)
+        self.module.setIntensity("RightFaceLedsGreen", 0)
+        self.module.setIntensity("LeftFaceLedsGreen", 0)
+        self.module.setIntensity("RightFaceLedsBlue", 0)
+        self.module.setIntensity("LeftFaceLedsBlue", 0)
 
 
 class RememberFace(Actuator):
@@ -524,8 +520,4 @@ class Robot(Thread):
                 time.sleep(0.5)
         #for actuatorStream in self.actuatorStreams:
         #    actuatorStream.tick()
-
-
-    def stop(self):
-        pass
 
