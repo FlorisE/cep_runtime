@@ -412,7 +412,7 @@ class Tracker(Actuator):
     def __init__(self, robot, uuid, tracking_mode, effector):
         Actuator.__init__(self, uuid)
         self.robot = robot
-        self.tracking_mode = tracking_mode
+        self.tracking_mode = str(tracking_mode)
         self.tracker = Proxy("ALTracker")
         self.motion = Proxy("ALMotion")
         self.effectorMap = {
