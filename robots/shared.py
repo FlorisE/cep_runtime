@@ -45,6 +45,9 @@ class Sensor():
     def start(self):
         pass
 
+    def stop(self):
+        pass
+
 
 class SensorStream():
     def __init__(self, sensor):
@@ -72,6 +75,9 @@ class SensorStream():
                 subscriber.publish(*_args)
 
     def tick(self):
+        pass
+
+    def stop(self):
         pass
 
 
