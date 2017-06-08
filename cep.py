@@ -3,6 +3,7 @@ from adapters.adapter_factory import adapter_factory
 from robots.factory import robot_factory
 from engine import engine_factory
 from collections import *
+from config import *
 import sys
 import robots.sock
 import robots.nao
@@ -23,7 +24,7 @@ running = True
 reload = True
 verbose = args.verbose
 
-adapter = adapter_factory(args.adapter, "neo4j", "rrp", verbose)
+adapter = adapter_factory(args.adapter, user, password, verbose)
 
 BlobMemory = None
 FaceDetectionMemory = None

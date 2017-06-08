@@ -1,12 +1,12 @@
-from neo4j.v1 import GraphDatabase, basic_auth, ResultError
+from neo4j.v1 import GraphDatabase, basic_auth
 from stream import *
 import model
 
 class Neo4jAdapter:
     def __init__(self, user, password, verbose=False):
-        driver = GraphDatabase.driver("bolt://localhost",
+        self.driver = GraphDatabase.driver("bolt://localhost:7687",
                                       auth=basic_auth(user, password))
-        self.session = driver.session()
+        self.session = self.driver.session()
         self.verbose = verbose
 
     def programs(self):
@@ -115,11 +115,6 @@ class Neo4jAdapter:
         cypher = self.program_query()
         parameters = {'program': program_id}
         result = self.session.run(cypher, parameters)
-
-        try:
-            result.peek()
-        except ResultError:
-            return None
 
         for record in result:
             programParam = record["programParam"]
