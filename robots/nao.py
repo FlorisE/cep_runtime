@@ -233,10 +233,8 @@ class FaceDetectionMemoryModule(Module):
         """ required doc """
         self.unsubscribeToEvent()
         data = self.memory.getData("FaceDetected", 0)
-        if len(data) == 5:
-            face = Face(data)
-            for detector in sensorStreams["FaceDetector"]:
-                detector.publish(face)
+        for detector in sensorStreams["FaceDetector"]:
+            detector.publish(len(data))
         self.subscribeToEvent()
 
 
